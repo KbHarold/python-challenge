@@ -11,6 +11,9 @@ prof_chg = []
 grt_inc = []
 grt_dec = []
 
+#Open the CSV file and read the rows in to count the number of months profit
+#Also calculates the change since the prior month determine the greatest increase/decrease
+#Also grabs dates of greatest increase and decrease based on index values for max/min
 with open(budget_csv, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     if csv.Sniffer().has_header:
@@ -26,6 +29,7 @@ with open(budget_csv, 'r') as csvfile:
         grtst_date = str(months[prof_chg.index(max(prof_chg))+1])
         smlst_date = str(months[prof_chg.index(min(prof_chg))+1])
 
+#instructions to print the results of the election to the terminal
 print("Financial Analysis")
 print("-----------------------------------")                
 print("Total Months:", len(months))
@@ -34,6 +38,7 @@ print("Average  Change: $",aver_chg)
 print("Greatest Increase in Profits: ", grtst_date,"($", grt_inc,")")
 print("Greatest Increase in Profits: ", smlst_date, "($", grt_dec,")")
 
+#instructions to output results to an output folder in the form of a text file
 output_path = os.path.join( "Output","Financial_Analysis.txt")
 with open(output_path, "w") as txtfile:
     txtfile.write("Financial Analysis" + "\n")
